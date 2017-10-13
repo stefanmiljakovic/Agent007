@@ -35,8 +35,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="65dp"
-            android:text="First Name:"
+            android:text="@string/first_name"
             android:textColor="@color/colorWhite"/>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -50,7 +51,8 @@
             android:id="@+id/editText1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="20dp"
+            android:paddingLeft="13dp"
+            android:paddingStart="13dp"
             android:background="@drawable/rounded_borders_edittext"
             android:textSize="20dp"
             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -60,7 +62,9 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignRight="@id/editText1"
+                android:layout_alignEnd="@id/editText1"
                 android:layout_marginRight="12dp"
+                android:layout_marginEnd="12dp"
                 android:src="@drawable/ic_action_clear"
                 android:background="@color/colorWhite"
                 android:visibility="gone"/>
@@ -70,8 +74,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="15dp"
-            android:text="Last Name:"
+            android:text="@string/last_name"
             android:textColor="@color/colorWhite"/>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -85,7 +90,8 @@
                 android:id="@+id/editText2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingLeft="20dp"
+                android:paddingLeft="13dp"
+                android:PaddingStart="13dp"
                 android:background="@drawable/rounded_borders_edittext"
                 android:textSize="20dp"
                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -95,11 +101,24 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignRight="@id/editText2"
+                android:layout_alignEnd="@id/editText2"
                 android:layout_marginRight="12dp"
+                android:layout_marginEnd="12dp"
                 android:src="@drawable/ic_action_clear"
                 android:background="@color/colorWhite"
                 android:visibility="gone"/>
         </RelativeLayout>
 
+        <Button
+            android:id="@+id/buttonLogIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/log_in_button_text"
+            android:background="@drawable/login_button"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="30dp"
+            android:clickable="true"
+            />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

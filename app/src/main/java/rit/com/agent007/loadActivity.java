@@ -1,17 +1,25 @@
 package rit.com.agent007;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,12 +52,60 @@ public class loadActivity extends AppCompatActivity {
         return Typeface.createFromAsset(getAssets(), "good_times.ttf");
     }
 
-//    get editText
+//    get editText, text view, button, imagebutton
 //    check
     protected EditText getEditTextById(int id){
         return (EditText)findViewById(id);
     }
     protected TextView getTextViewById(int id) { return (TextView)findViewById(id); }
+    protected Button getButtonById(int id) {return (Button)findViewById(id);}
+    protected ImageButton getImgButtonById(int id) {return (ImageButton)findViewById(id);}
+
+// Load button click script
+    protected void loadButtonClickScript(Button btn) {
+        btn.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v)
+            {
+
+            }
+        });
+    }
+
+    protected void loadButtonClearScript(ImageButton btn, int edtId){
+        final int id = edtId;
+
+        btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                getEditTextById(id).setText("");
+            }
+        });
+    }
+    protected void loadEditTextScript(EditText edt, int btnId) {
+        final int id = btnId;
+
+        edt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(count == 0)
+                    getImgButtonById(id).setVisibility(ImageButton.GONE);
+                else
+                    getImgButtonById(id).setVisibility(ImageButton.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +129,15 @@ public class loadActivity extends AppCompatActivity {
         textViewFirstName.setTypeface(getTypeFace());
         textViewLastName.setTypeface(getTypeFace());
 
-        ImageView imgView = setImage();
+        getButtonById(R.id.buttonLogIn).setTypeface(getTypeFace());
+
+        setImage();
+
+        loadButtonClearScript(getImgButtonById(R.id.buttonClear1), R.id.editText1);
+        loadButtonClearScript(getImgButtonById(R.id.buttonClear2), R.id.editText2);
+
+        loadEditTextScript(editText1, R.id.buttonClear1);
+        loadEditTextScript(editText2, R.id.buttonClear2);
 
     }
 
