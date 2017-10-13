@@ -91,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="13dp"
-                android:PaddingStart="13dp"
+                android:paddingStart="13dp"
                 android:background="@drawable/rounded_borders_edittext"
                 android:textSize="20dp"
                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
