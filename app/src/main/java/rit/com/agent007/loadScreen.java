@@ -20,23 +20,23 @@ import android.widget.LinearLayout;
 
 public class loadScreen extends AppCompatActivity {
 
-    public static int GLOBAL_ANIM_TIME = 2000;
-    public static int PULSE_ANIM_TIME = 500;
+    private static int GLOBAL_ANIM_TIME = 2000;
+    private static int PULSE_ANIM_TIME = 500;
 
     // Run in full screen
-    protected void runFullScreen(){
+    private void runFullScreen(){
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     // Remove top bar
-    protected void hideBar(){
+    private void hideBar(){
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
     }
 
     // Set Image to ImgView
-    protected ImageView setImage(){
+    private ImageView setImage(){
         ImageView imgView = (ImageView)findViewById(R.id.imgView);
         imgView.setImageDrawable(getResources().getDrawable(R.mipmap.ic_launcher_round));
 
@@ -45,7 +45,7 @@ public class loadScreen extends AppCompatActivity {
 
 
     // Animate alpha background from white to black
-    protected void animateBackground(){
+    private void animateBackground(){
         final ValueAnimator valueAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), Color.WHITE, Color.BLACK);
 
 
@@ -86,7 +86,7 @@ public class loadScreen extends AppCompatActivity {
     }
 
     // Pulse animation for imageView
-    protected void animateImgPulse(){
+    private void animateImgPulse(){
         AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
         alphaAnimation.setDuration(PULSE_ANIM_TIME);
         alphaAnimation.setRepeatMode(Animation.REVERSE);
@@ -122,7 +122,7 @@ public class loadScreen extends AppCompatActivity {
     // animate image move, fillAfter true to prevent image blink, move by 110DP
     // (50DP is half image height and 60DP is padding on 2nd activity)
 
-    protected void animateImgMove()
+    private void animateImgMove()
     {
         final ImageView imgView = (ImageView)findViewById(R.id.imgView);
 
@@ -156,9 +156,9 @@ public class loadScreen extends AppCompatActivity {
         });
     }
 
-    protected void callNextActivity(){
+    private void callNextActivity(){
 
-        Intent intent = new Intent(loadScreen.this, loadActivity.class);
+        Intent intent = new Intent(loadScreen.this, loginActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }

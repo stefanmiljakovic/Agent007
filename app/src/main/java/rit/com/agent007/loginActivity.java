@@ -1,5 +1,6 @@
 package rit.com.agent007;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,24 +15,26 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class loadActivity extends AppCompatActivity {
+public class loginActivity extends AppCompatActivity {
+
 
 
 //    Remove title bar, add full screen support
-    protected void runFullScreen(){
+    private void runFullScreen(){
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
 //    Hide action bar
-    protected void hideBar(){
+    private void hideBar(){
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
     }
 
 //    get ImageView, then add resource, return ImageView object
-    protected ImageView setImage(){
+    private ImageView setImage(){
         ImageView imgView = (ImageView)findViewById(R.id.imgView);
         imgView.setImageDrawable(getResources().getDrawable(R.mipmap.ic_launcher_round));
 
@@ -40,30 +43,52 @@ public class loadActivity extends AppCompatActivity {
 
 //   make typeface, return typeface
 
-    protected Typeface getTypeFace() {
+    private Typeface getTypeFace() {
         return Typeface.createFromAsset(getAssets(), "good_times.ttf");
     }
 
 //    get editText, text view, button, imagebutton
 //    check
-    protected EditText getEditTextById(int id){
+    private EditText getEditTextById(int id){
         return (EditText)findViewById(id);
     }
-    protected TextView getTextViewById(int id) { return (TextView)findViewById(id); }
-    protected Button getButtonById(int id) {return (Button)findViewById(id);}
-    protected ImageButton getImgButtonById(int id) {return (ImageButton)findViewById(id);}
+    private TextView getTextViewById(int id) { return (TextView)findViewById(id); }
+    private Button getButtonById(int id) {return (Button)findViewById(id);}
+    private ImageButton getImgButtonById(int id) {return (ImageButton)findViewById(id);}
 
 // Load button click script
-    protected void loadButtonClickScript(Button btn) {
+    private void loadButtonClickScript(Button btn) {
+
+        final EditText editTextFirstName = getEditTextById(R.id.editText1);
+        final EditText editTextLastName = getEditTextById(R.id.editText2);
+
         btn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v)
             {
+                String firstName = editTextFirstName.getText().toString();
+                String lastName = editTextLastName.getText().toString();
 
+                if(firstName.isEmpty() || firstName == null || lastName.isEmpty() || lastName == null)
+                    showToastMessage();
+                else{
+                    Intent intent = new Intent(loginActivity.this, mainActivity.class);
+                    intent.putExtra("NAME_SURNAME", firstName + " " +
+                            lastName.charAt(0) + ".");
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                }
             }
         });
     }
 
-    protected void loadButtonClearScript(ImageButton btn, int edtId){
+    private void showToastMessage()
+    {
+        Toast toast = Toast.makeText(getApplicationContext(), "Invalid credentials", Toast.LENGTH_SHORT);
+        toast.show();
+
+    }
+
+    private void loadButtonClearScript(ImageButton btn, int edtId){
         final int id = edtId;
 
         btn.setOnClickListener(new View.OnClickListener(){
@@ -73,7 +98,7 @@ public class loadActivity extends AppCompatActivity {
             }
         });
     }
-    protected void loadEditTextScript(EditText edt, int btnId) {
+    private void loadEditTextScript(EditText edt, int btnId) {
         final int id = btnId;
 
         edt.addTextChangedListener(new TextWatcher() {
@@ -104,7 +129,7 @@ public class loadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         runFullScreen();
-        setContentView(R.layout.activity_load);
+        setContentView(R.layout.activity_login);
         hideBar();
 
         EditText editText1 = getEditTextById(R.id.editText1);
@@ -131,13 +156,16 @@ public class loadActivity extends AppCompatActivity {
         loadEditTextScript(editText1, R.id.buttonClear1);
         loadEditTextScript(editText2, R.id.buttonClear2);
 
+        loadButtonClickScript(getButtonById(R.id.buttonLogIn));
     }
 
 
 
     @Override
-    protected void onStart(){
-        super.onStart();
+    protected void onPause(){
+        super.onPause();
+
+        finish();
     }
 
 

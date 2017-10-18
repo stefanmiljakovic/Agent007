@@ -3,4 +3,6 @@
     <string name="log_in_button_text">Log In</string>
     <string name="first_name">First Name:</string>
     <string name="last_name">Last Name:</string>
+    <string name="sample_location">\n\nLongitude: xx.xx\nLatitude: yy.yy</string>
+    <string name="default_gps_indicator">GPS Disabled</string>
 </resources>
