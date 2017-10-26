@@ -185,8 +185,6 @@ public class mainActivity extends AppCompatActivity {
                 textViewGPS.setText("GPS Enabled");
             }}
 
-        implementSensor();
-
     }
 
     @Override
@@ -212,6 +210,10 @@ public class mainActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
+
+        if(sensorManager == null)
+            implementSensor();
+
         sensorManager.registerListener(gyroscopeEventListener, gyroscopeSensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
