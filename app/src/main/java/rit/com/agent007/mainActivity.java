@@ -1,9 +1,5 @@
 package rit.com.agent007;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -25,15 +21,5 @@ public class mainActivity extends locationGPSManager {
         textViewGPS.setTypeface(getTypeFace());
         textView.setTypeface(getTypeFace());
     }
-
-    @Override
-    protected void onStart(){
-        super.onStart();
-
-        if(Build.VERSION.SDK_INT >= 23 && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-        ActivityCompat.requestPermissions(mainActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-    }
-
-
 
 }

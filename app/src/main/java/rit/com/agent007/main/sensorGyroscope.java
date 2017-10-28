@@ -7,7 +7,9 @@ import android.hardware.SensorManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import rit.com.agent007.R;
@@ -23,15 +25,18 @@ public class sensorGyroscope extends SharedAppToolbox{
     private Sensor gyroscopeSensor;
     private SensorManager sensorManager;
 
+    private Boolean noGyroscope = false;
+
+    private TextView[] textViews;
+
     private void implementSensor(){
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         gyroscopeSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 
-        final TextView textViewHide2 = (TextView)findViewById(R.id.main_TextView_coordinates);
-        final TextView textViewHide1 = (TextView)findViewById(R.id.main_TextView_logo);
-
-        if(gyroscopeSensor==null)
-            finish();
+        if(gyroscopeSensor==null){
+            noGyroscope = true;
+            return;
+        }
 
         gyroscopeEventListener = new SensorEventListener(){
 
@@ -50,8 +55,7 @@ public class sensorGyroscope extends SharedAppToolbox{
                 }
 
                 if(rotationCount % 7 == 0){
-                    switchVisibility(textViewHide1);
-                    switchVisibility(textViewHide2);
+                    switchVisibility();
 
                     rotationCount = 1;
                 }
@@ -65,11 +69,29 @@ public class sensorGyroscope extends SharedAppToolbox{
         sensorManager.registerListener(gyroscopeEventListener, gyroscopeSensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
-    private void switchVisibility(View v){
-        if(v.getVisibility() == View.INVISIBLE)
-            v.setVisibility(View.VISIBLE);
-        else
-            v.setVisibility(View.INVISIBLE);
+    private void implementButtonListener(){
+
+        ImageView imageView = getImgViewById(R.id.main_ImageView_main);
+        imageView.setClickable(true);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchVisibility();
+            }
+        });
+
+    }
+
+    private void switchVisibility(){
+        if(textViews[0].getVisibility() == View.INVISIBLE) {
+            textViews[0].setVisibility(View.VISIBLE);
+            textViews[1].setVisibility(View.VISIBLE);
+        }
+        else{
+            textViews[0].setVisibility(View.INVISIBLE);
+            textViews[1].setVisibility(View.INVISIBLE);
+        }
 
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
@@ -78,18 +100,32 @@ public class sensorGyroscope extends SharedAppToolbox{
     }
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        textViews = new TextView[]{getTextViewById(R.id.main_TextView_logo), getTextViewById(R.id.main_TextView_coordinates)};
+
+        implementSensor();
+
+        if(noGyroscope)
+            implementButtonListener();
+    }
+
+    @Override
     protected void onResume(){
         super.onResume();
-
         if(sensorManager == null)
             implementSensor();
 
+        if(gyroscopeSensor==null)
         sensorManager.registerListener(gyroscopeEventListener, gyroscopeSensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
     @Override
     protected void onPause(){
         super.onPause();
+
+        if(gyroscopeSensor==null)
         sensorManager.unregisterListener(gyroscopeEventListener);
     }
 

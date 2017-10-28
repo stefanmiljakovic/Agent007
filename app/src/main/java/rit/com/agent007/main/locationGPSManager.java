@@ -44,7 +44,6 @@ public class locationGPSManager extends sensorGyroscope {
                         Manifest.permission.ACCESS_COARSE_LOCATION,
                         Manifest.permission.INTERNET
                 }, 1);
-                return;
             }
             else{
                 regLocationListener();
