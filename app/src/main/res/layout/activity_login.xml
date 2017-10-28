@@ -8,7 +8,7 @@
     tools:context="rit.com.agent007.loginActivity">
 
     <LinearLayout
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingTop="60dp"
@@ -18,12 +18,13 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imgView"
+            android:id="@+id/login_ImageView_main"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:src="@mipmap/ic_launcher_round"
             />
         <TextView
-            android:id="@+id/textViewTop"
+            android:id="@+id/login_TextView_onTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
@@ -31,7 +32,7 @@
             android:layout_marginTop="15dp"
             android:textColor="@color/colorWhite"/>
         <TextView
-            android:id="@+id/textViewFirstName"
+            android:id="@+id/login_TextView_FirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -48,7 +49,7 @@
             android:layout_marginBottom="10dp"
             >
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/login_EditText_FirstName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="13dp"
@@ -59,11 +60,11 @@
             android:maxLength="9"
             />
             <ImageButton
-                android:id="@+id/buttonClear1"
+                android:id="@+id/login_ImageButton_clearFirstName"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_alignRight="@id/editText1"
-                android:layout_alignEnd="@id/editText1"
+                android:layout_alignRight="@id/login_EditText_FirstName"
+                android:layout_alignEnd="@id/login_EditText_FirstName"
                 android:layout_marginRight="12dp"
                 android:layout_marginEnd="12dp"
                 android:src="@drawable/ic_action_clear"
@@ -71,7 +72,7 @@
                 android:visibility="gone"/>
         </RelativeLayout>
         <TextView
-            android:id="@+id/textViewLastName"
+            android:id="@+id/login_TextView_LastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -88,7 +89,7 @@
             android:layout_marginBottom="10dp"
             >
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/login_EditText_LastName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="13dp"
@@ -99,11 +100,11 @@
                 android:maxLength="9"
                 />
             <ImageButton
-                android:id="@+id/buttonClear2"
+                android:id="@+id/login_ImageButton_clearLastName"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_alignRight="@id/editText2"
-                android:layout_alignEnd="@id/editText2"
+                android:layout_alignRight="@id/login_EditText_LastName"
+                android:layout_alignEnd="@id/login_EditText_LastName"
                 android:layout_marginRight="12dp"
                 android:layout_marginEnd="12dp"
                 android:src="@drawable/ic_action_clear"
@@ -112,7 +113,7 @@
         </RelativeLayout>
 
         <Button
-            android:id="@+id/buttonLogIn"
+            android:id="@+id/login_Button_LogIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
