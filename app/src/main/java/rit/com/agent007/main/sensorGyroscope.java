@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import rit.com.agent007.R;
@@ -27,7 +28,7 @@ public class sensorGyroscope extends SharedAppToolbox{
 
     private Boolean noGyroscope = false;
 
-    private TextView[] textViews;
+    private LinearLayout linearLayout;
 
     private void implementSensor(){
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -84,14 +85,11 @@ public class sensorGyroscope extends SharedAppToolbox{
     }
 
     private void switchVisibility(){
-        if(textViews[0].getVisibility() == View.INVISIBLE) {
-            textViews[0].setVisibility(View.VISIBLE);
-            textViews[1].setVisibility(View.VISIBLE);
-        }
-        else{
-            textViews[0].setVisibility(View.INVISIBLE);
-            textViews[1].setVisibility(View.INVISIBLE);
-        }
+        if(linearLayout.getVisibility() == View.VISIBLE)
+            linearLayout.setVisibility(View.INVISIBLE);
+        else
+            linearLayout.setVisibility(View.VISIBLE);
+
 
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
@@ -103,7 +101,7 @@ public class sensorGyroscope extends SharedAppToolbox{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        textViews = new TextView[]{getTextViewById(R.id.main_TextView_logo), getTextViewById(R.id.main_TextView_coordinates)};
+        linearLayout = getLinearLayoutById(R.id.main_LinearLayout_switch);
 
         implementSensor();
 

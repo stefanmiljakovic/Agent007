@@ -11,6 +11,7 @@ public class mainActivity extends locationGPSManager {
     private TextView textView, textViewGPS;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +21,7 @@ public class mainActivity extends locationGPSManager {
 
         textViewGPS.setTypeface(getTypeFace());
         textView.setTypeface(getTypeFace());
+
     }
 
 }

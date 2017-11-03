@@ -20,7 +20,7 @@ import rit.com.agent007.R;
  * Created by Stefan on 28/10/17.
  */
 
-public class locationGPSManager extends sensorGyroscope {
+public class locationGPSManager extends mapFragmentManager {
     private LocationManager locationManager;
     private LocationListener locationListener;
 
@@ -69,6 +69,8 @@ public class locationGPSManager extends sensorGyroscope {
             @Override
             public void onLocationChanged(Location location) {
                 textView.setText("Welcome agent " + agentName + "\n\nLatitude: " + location.getLatitude() + "\nLongitude: " + location.getLongitude());
+                if(location != null)
+                onLocationChanges(location, agentName);
             }
 
             @Override

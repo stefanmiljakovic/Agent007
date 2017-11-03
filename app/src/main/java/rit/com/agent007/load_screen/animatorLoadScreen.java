@@ -20,6 +20,7 @@ import rit.com.agent007.loginActivity;
 
 public class animatorLoadScreen extends SharedAppToolbox {
 
+    private static int SPEED_UP = 10;
     private static int GLOBAL_ANIM_TIME = 2000;
     private static int PULSE_ANIM_TIME = 500;
 
@@ -31,7 +32,7 @@ public class animatorLoadScreen extends SharedAppToolbox {
 
         final LinearLayout linLayout = getLinearLayoutById(R.id.loadScreen_LinearLayout_main);
 
-        valueAnimator.setDuration(GLOBAL_ANIM_TIME);
+        valueAnimator.setDuration(GLOBAL_ANIM_TIME/SPEED_UP);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -75,7 +76,7 @@ public class animatorLoadScreen extends SharedAppToolbox {
         float moveBy = 110 * DP - getWindowManager().getDefaultDisplay().getHeight()/2;
 
         TranslateAnimation translateAnimation = new TranslateAnimation(0.0f, 0.0f, 0.0f, moveBy);
-        translateAnimation.setDuration(3000);
+        translateAnimation.setDuration(3000/SPEED_UP);
         translateAnimation.setFillAfter(true);
 
         imgView.startAnimation(translateAnimation);
@@ -103,7 +104,7 @@ public class animatorLoadScreen extends SharedAppToolbox {
     // Pulse animation for imageView
     private void animateImgPulse(){
         AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
-        alphaAnimation.setDuration(PULSE_ANIM_TIME);
+        alphaAnimation.setDuration(PULSE_ANIM_TIME/SPEED_UP);
         alphaAnimation.setRepeatMode(Animation.REVERSE);
 
         // Remove -1 and make it odd so it doesn't remain 0 (invisible)

@@ -8,6 +8,8 @@
 
     <uses-feature android:name="android.hardware.location.gps" />
     <uses-feature android:name="android.hardware.sensor.gyroscope"/>
+    <user-feature android:glEsVersion="0x00020000"
+        android:required="true"/>
 
     <application
         android:allowBackup="true"
@@ -25,6 +27,10 @@
         </activity>
         <activity android:name=".loginActivity" />
         <activity android:name=".mainActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCnhvv2Cqe0x3NykNjssHPwpfxyejUabfk"/>
 
     </application>
 
