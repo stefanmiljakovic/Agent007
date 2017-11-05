@@ -20,7 +20,7 @@ import rit.com.agent007.loginActivity;
 
 public class animatorLoadScreen extends SharedAppToolbox {
 
-    private static int SPEED_UP = 10;
+    private static int SPEED_UP = 1;
     private static int GLOBAL_ANIM_TIME = 2000;
     private static int PULSE_ANIM_TIME = 500;
 

@@ -22,6 +22,8 @@ import rit.com.agent007.SharedAppToolbox;
 
 public class sensorGyroscope extends SharedAppToolbox{
 
+    private static float GYRO_BREAKPOINT = 4.5f;
+
     private SensorEventListener gyroscopeEventListener;
     private Sensor gyroscopeSensor;
     private SensorManager sensorManager;
@@ -46,11 +48,11 @@ public class sensorGyroscope extends SharedAppToolbox{
 
             @Override
             public void onSensorChanged(SensorEvent event) {
-                if(event.values[1] > 3.0f && switchRotationCount){
+                if(event.values[1] > GYRO_BREAKPOINT && switchRotationCount){
                     rotationCount++;
                     switchRotationCount = !switchRotationCount;
                 }
-                else if(event.values[1] < -3.0f && !switchRotationCount){
+                else if(event.values[1] < -GYRO_BREAKPOINT && !switchRotationCount){
                     rotationCount++;
                     switchRotationCount = !switchRotationCount;
                 }
